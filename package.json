@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bs-css": "^8.0.2",
+    "normalize.css": "^8.0.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "bs-css": "^8.0.2",
     "reason-apollo": "^0.15.2",
     "reason-scripts": "1.0.0"
   },

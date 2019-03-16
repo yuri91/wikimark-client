@@ -15,8 +15,8 @@ let make = _children => {
   didMount: self => {
     let watcherID =
       ReasonReact.Router.watchUrl(url =>
-        switch (url.hash) {
-        | "list" => self.send(PageList)
+        switch (url.path) {
+        | ["list"] => self.send(PageList)
         | _ => self.send(Home)
         }
       );

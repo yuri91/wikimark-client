@@ -7,7 +7,7 @@ let make = _children => {
     <div className=Styles.grid>
       <header>
         <div className="toolbar">
-          <a href="/edit">
+          <a href="#edit">
             {str("NEW ")}
             <i className=Styles.Icons.new_ />
           </a>
@@ -23,13 +23,13 @@ let make = _children => {
           <h3> {str("NAVIGATION")} </h3>
           <ul>
             <li>
-              <a href="/">
+              <a href="#">
                 <i className=Styles.Icons.home />
                 {str(" Home")}
               </a>
             </li>
             <li>
-              <a href="/all">
+              <a href="#list">
                 <i className=Styles.Icons.allPages />
                 {str(" All Pages")}
               </a>
@@ -38,7 +38,7 @@ let make = _children => {
         </div>
         <div id="toc" />
       </nav>
-      <article> <PageList /> </article>
+      <article> <Main /> </article>
       <footer />
     </div>;
   },

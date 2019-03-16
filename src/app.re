@@ -14,7 +14,7 @@ let make = _children => {
           <span className="toolbar-divider" />
           <span className="user">
             {str("Hi Yuri!")}
-            <i className="icon-user" />
+            <i className=Styles.Icons.user />
           </span>
         </div>
       </header>
@@ -23,12 +23,15 @@ let make = _children => {
           <h3> {str("NAVIGATION")} </h3>
           <ul>
             <li>
-              <a href="/"> <i className="icon-home" /> {str("Home")} </a>
+              <a href="/">
+                <i className=Styles.Icons.home />
+                {str(" Home")}
+              </a>
             </li>
             <li>
               <a href="/all">
-                <i className="icon-all-pages" />
-                {str("All Pages")}
+                <i className=Styles.Icons.allPages />
+                {str(" All Pages")}
               </a>
             </li>
           </ul>

@@ -117,14 +117,26 @@ Css.global("body, html", [height(pct(100.))]);
 
 module Icons = {
   [@bs.module] external newSvg: string = "./icons/new.svg";
+  [@bs.module] external editSvg: string = "./icons/edit.svg";
+  [@bs.module] external homeSvg: string = "./icons/home.svg";
+  [@bs.module] external allPagesSvg: string = "./icons/all-pages.svg";
 
-  let new_ =
+  let common = [
+    display(inlineBlock),
+    width(px(24)),
+    height(px(24)),
+    backgroundSize(size(px(24), px(24))),
+    verticalAlign(middle),
+  ];
+  let new_ = Css.style([background(url(newSvg)), ...common]);
+  let edit = Css.style([background(url(editSvg)), ...common]);
+  let home = Css.style([background(url(homeSvg)), ...common]);
+  let allPages = Css.style([background(url(allPagesSvg)), ...common]);
+
+  let user =
     Css.style([
       display(inlineBlock),
-      width(px(24)),
       height(px(24)),
-      background(url(newSvg)),
-      backgroundSize(size(px(24), px(24))),
       verticalAlign(middle),
     ]);
 };

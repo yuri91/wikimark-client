@@ -5,6 +5,8 @@
   "dependencies": {
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "bs-css": "^8.0.2",
+    "reason-apollo": "^0.15.2",
     "reason-scripts": "1.0.0"
   },
   "scripts": {
@@ -26,6 +28,7 @@
     "@glennsl/bs-jest": "^0.4.8",
     "bs-fetch": "^0.3.1",
     "bs-platform": "^4.0.18",
+    "graphql_ppx": "^0.2.8",
     "reason-react": "^0.6.0"
   }
 }

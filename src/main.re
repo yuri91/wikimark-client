@@ -11,7 +11,7 @@ let component = ReasonReact.reducerComponent("Main");
 let make = _children => {
   ...component,
   reducer: (action, _state) => ReasonReact.Update({view: action}),
-  initialState: () => {view: PageList},
+  initialState: () => {view: Home},
   didMount: self => {
     let watcherID =
       ReasonReact.Router.watchUrl(url =>

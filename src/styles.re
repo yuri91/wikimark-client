@@ -118,6 +118,21 @@ let page =
     selector("pre", [backgroundColor(navColor), color(navTextColor)]),
   ]);
 
+let main = Css.style([padding(px(8))]);
+
+let list =
+  Css.style([
+    selector(
+      "li:hover",
+      [background(navSelectedColor), color(navTextColor)],
+    ),
+    selector(
+      "li",
+      [borderBottom(px(1), solid, navColor), fontSize(px(20))],
+    ),
+    selector("ul", [listStyleType(none), margin(zero), padding(zero)]),
+  ]);
+
 Css.global("body, html", [height(pct(100.))]);
 
 module Icons = {

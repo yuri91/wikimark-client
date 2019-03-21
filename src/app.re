@@ -39,7 +39,7 @@ let make = _children => {
         </div>
         <div id="toc" />
       </nav>
-      <article> <Main /> </article>
+      <article className=Styles.main> <Main /> </article>
       <footer />
     </div>;
   },

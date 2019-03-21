@@ -13,6 +13,6 @@ let md = {|
 let make = _children => {
   ...component,
   render: _self => {
-    <div dangerouslySetInnerHTML={"__html": Markdown.render(md)} />;
+    <Markdown md />;
   },
 };

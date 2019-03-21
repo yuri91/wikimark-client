@@ -5,3 +5,13 @@ module List = [%graphql {|
 |}];
 
 module ListQuery = ReasonApollo.CreateQuery(List);
+
+module Read = [%graphql
+  {|
+  query read($path: String!) {
+      read(path: $path)
+  }
+|}
+];
+
+module ReadQuery = ReasonApollo.CreateQuery(Read);

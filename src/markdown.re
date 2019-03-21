@@ -2,6 +2,8 @@
 type hljsRes = {value: string};
 [@bs.module "highlight.js"]
 external hljs: (string, string) => hljsRes = "highlight";
+[@bs.module "highlight.js"]
+external hljsAuto: string => hljsRes = "highlightAuto";
 
 [@bs.deriving abstract]
 type markdownOptions = {
@@ -16,6 +18,7 @@ external create: markdownOptions => markdown = "markdown-it";
 
 let hljsFn = (so: option(string), lo: option(string)) => {
   switch (lo, so) {
+  | (Some(""), Some(s)) => hljsAuto(s)->valueGet
   | (Some(l), Some(s)) => hljs(l, s)->valueGet
   | _ => ""
   };
@@ -26,4 +29,16 @@ let render: string => string =
     render_(renderer, md);
   };
 
-[%bs.raw {|require('highlight.js/styles/default.css')|}];
+[%bs.raw {|require('highlight.js/styles/solarized-dark.css')|}];
+
+let component = ReasonReact.statelessComponent("Markdown");
+
+let make = (~md, _children) => {
+  ...component,
+  render: _self => {
+    <div
+      dangerouslySetInnerHTML={"__html": render(md)}
+      className=Styles.page
+    />;
+  },
+};

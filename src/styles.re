@@ -113,6 +113,11 @@ let grid =
     fontSize(px(14)),
   ]);
 
+let page =
+  Css.style([
+    selector("pre", [backgroundColor(navColor), color(navTextColor)]),
+  ]);
+
 Css.global("body, html", [height(pct(100.))]);
 
 module Icons = {

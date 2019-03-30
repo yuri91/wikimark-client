@@ -13,6 +13,9 @@ let navColor = hex("263238");
 let navSectionColor = hex("37474f");
 let navTextColor = hex("ffffff");
 let navSelectedColor = hex("4e6069");
+let titleColor = hex("f0c808");
+let anchorColor = hex("4183c4");
+
 let shadow =
   boxShadow(~x=px(0), ~y=px(0), ~blur=px(5), rgba(0, 0, 0, 0.3));
 let header = [
@@ -113,12 +116,43 @@ let grid =
     fontSize(px(14)),
   ]);
 
+let anchoredTitles =
+  selector(
+    "h1, h2, h3, h4, h5, h6",
+    [
+      selector(
+        ".anchorLink",
+        [
+          textDecoration(none),
+          visibility(hidden),
+          fontWeight(initial),
+          color(anchorColor),
+        ],
+      ),
+      selector(
+        ":hover",
+        [selector(".anchorLink", [visibility(visible)])],
+      ),
+    ],
+  );
 let page =
   Css.style([
+    padding(px(8)),
     selector("pre", [backgroundColor(navColor), color(navTextColor)]),
+    anchoredTitles,
   ]);
 
-let main = Css.style([padding(px(8))]);
+let title =
+  Css.style([
+    backgroundColor(titleColor),
+    fontSize(px(20)),
+    padding(px(10)),
+    margin(px(0)),
+    selector("h1", [margin(px(0))]),
+    anchoredTitles,
+  ]);
+
+let main = Css.style([]);
 
 let list =
   Css.style([

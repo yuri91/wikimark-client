@@ -1,44 +1,34 @@
 [@bs.deriving abstract]
-type hljsRes = {value: string};
-[@bs.module "highlight.js"]
-external hljs: (string, string) => hljsRes = "highlight";
-[@bs.module "highlight.js"]
-external hljsAuto: string => hljsRes = "highlightAuto";
-
-[@bs.deriving abstract]
-type markdownOptions = {
-  highlight: (option(string), option(string)) => string,
+type processResult = {
+  content: string,
+  meta: Js.Dict.t(string),
+  toc: string,
 };
-
-type markdown;
-[@bs.new] [@bs.module]
-external create: markdownOptions => markdown = "markdown-it";
-
-[@bs.send] external render_: (markdown, string) => string = "render";
-
-let hljsFn = (so: option(string), lo: option(string)) => {
-  switch (lo, so) {
-  | (Some(""), Some(s)) => hljsAuto(s)->valueGet
-  | (Some(l), Some(s)) => hljs(l, s)->valueGet
-  | _ => ""
-  };
-};
-let renderer = create(markdownOptions(~highlight=hljsFn));
-let render: string => string =
-  md => {
-    render_(renderer, md);
-  };
-
-[%bs.raw {|require('highlight.js/styles/solarized-dark.css')|}];
+[@bs.module "./markdownIt"]
+external process: string => processResult = "process";
 
 let component = ReasonReact.statelessComponent("Markdown");
+let str = ReasonReact.string;
 
 let make = (~md, _children) => {
   ...component,
   render: _self => {
-    <div
-      dangerouslySetInnerHTML={"__html": render(md)}
-      className=Styles.page
-    />;
+    let res = process(md);
+    let meta = res->metaGet;
+    let content = res->contentGet;
+    <div>
+      <div className=Styles.title>
+        <h1>
+          {str(meta->Js.Dict.get("title")->Belt.Option.getWithDefault(""))}
+          <a href="#" className="anchorLink">
+            <span className="anchor"> {str({js| 🔗|js})} </span>
+          </a>
+        </h1>
+      </div>
+      <div
+        dangerouslySetInnerHTML={"__html": content}
+        className=Styles.page
+      />
+    </div>;
   },
 };
